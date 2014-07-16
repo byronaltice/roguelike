@@ -9,7 +9,7 @@ MergeSort::Sort(deque<int> & dInt)
 	deque<int> dEmpty;
 	Merge(dInt, dEmpty);
 }
-deque<int> & 
+deque<int>  
 MergeSort::Merge(deque<int> & dIntLeft, deque<int> & dIntRight)
 {
 	if (dIntLeft.size() > 1)
@@ -44,12 +44,12 @@ MergeSort::Merge(deque<int> & dIntLeft, deque<int> & dIntRight)
 	deque<int> dMerged;
 	while (itLeft != dIntLeft.end() || itRight != dIntRight.end())
 	{
-		if (*itLeft < *itRight || itRight == dIntRight.end())
+		if (itLeft != dIntLeft.end() && (itRight == dIntRight.end() || *itLeft <= /*If we get two numbers that are the same*/ *itRight) ) //shortcut here so wwe don't dereference the end()
 		{
 			dMerged.push_back(*itLeft);
 			itLeft++;
 		}
-		else if (*itRight < *itLeft || itLeft == dIntLeft.end())
+		else if (itRight != dIntRight.end() && (itLeft == dIntLeft.end() || *itRight < *itLeft)) //same
 		{
 			dMerged.push_back(*itRight);
 			itRight++;

@@ -8,6 +8,6 @@ public:
 	~MergeSort(){};
 	static void Sort(deque<int> & dInt);
 private:
-	static deque<int> &Merge(deque<int> & dIntLeft, deque<int> & dIntRight);
+	static deque<int> Merge(deque<int> & dIntLeft, deque<int> & dIntRight);
 };
 #endif

@@ -17,7 +17,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	for (int i = 0; i < 21; i++)
 		cout << iArray[i] << endl;
 	for (deque<int>::iterator it = dInt.begin(); it != dInt.end(); it++) // ++ should go at the end right?
-		cout << *it;
+		cout << *it << endl;
 	return 0;
 }
 
