@@ -19,3 +19,18 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio
+*.sln
+*.sdf
+*.opensdf
+*.ilk
+*.pdb
+*.v12.suo
+*.log
+*.tlog
+*.vcxproj.filters
+*.vcxproj
+*.idb
+*.lastbuildstate
+unsuccessfulbuild
