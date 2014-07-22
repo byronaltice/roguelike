@@ -34,3 +34,7 @@
 *.idb
 *.lastbuildstate
 unsuccessfulbuild
+README.md
+ipch
+roguelike/Debug
+roguelike/ReadMe.txt
