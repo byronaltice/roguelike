@@ -1,21 +1,27 @@
-﻿Build started 7/21/2014 7:25:39 PM.
+﻿Build started 7/21/2014 7:59:40 PM.
      1>Project "F:\roguelike\roguelike\roguelike.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\roguelike.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameEventManager.cpp GameObject.cpp Level.cpp Player.cpp roguelike.cpp
-         Player.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\roguelike.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameEventManager.cpp Level.cpp
          Level.cpp
-     1>f:\roguelike\roguelike\level.h(14): error C2143: syntax error : missing ';' before '<'
-     1>f:\roguelike\roguelike\level.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>f:\roguelike\roguelike\level.h(14): error C2238: unexpected token(s) preceding ';'
+         Generating Code...
+         Compiling...
          GameEventManager.cpp
      1>f:\roguelike\roguelike\gameeventmanager.cpp(12): warning C4018: '<' : signed/unsigned mismatch
      1>f:\roguelike\roguelike\gameeventmanager.cpp(20): warning C4018: '<' : signed/unsigned mismatch
          Generating Code...
-         Skipping... (no relevant changes detected)
-         roguelike.cpp
-         GameObject.cpp
-     1>Done Building Project "F:\roguelike\roguelike\roguelike.vcxproj" (Build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\roguelike\Debug\roguelike.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\roguelike\Debug\roguelike.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\roguelike\Debug\roguelike.lib" /MACHINE:X86 Debug\GameEventManager.obj
+         Debug\GameObject.obj
+         Debug\GameState.obj
+         Debug\Level.obj
+         Debug\mergesort.obj
+         Debug\Player.obj
+         Debug\quicksort.obj
+         Debug\roguelike.obj
+         Debug\stdafx.obj
+         roguelike.vcxproj -> F:\roguelike\Debug\roguelike.exe
+     1>Done Building Project "F:\roguelike\roguelike\roguelike.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:01.26
