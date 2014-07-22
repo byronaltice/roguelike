@@ -5,5 +5,6 @@
 
 GameObject::GameObject()
 {
-	GameEventManager::GetGameEventManager()->RegisterGameObject(shared_from_this());
+	shared_ptr<GameObject> ptr(this);
+	GameEventManager::GetGameEventManager()->RegisterGameObject(ptr);
 }

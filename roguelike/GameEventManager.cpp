@@ -7,30 +7,31 @@ shared_ptr<GameEventManager> GameEventManager::msptrGameEventManager(NULL);
 void
 GameEventManager::StartGameEvents()
 {
-	Level level; // Will make a player with is registered with the GameVector automatically
+	Level level; // Will make a player which is registered with the GameVector automatically
 	//run once
-	for (int i = 0; i < GetRegisteredGameVector().size(); i++)
+	for (int i = 0; i < GetRegisteredGameVector()->size(); i++)
 	{
-		GetRegisteredGameVector()[i]->Start(); //nothing for now
+		(*GetRegisteredGameVector())[i]->Start(); //nothing for now
 
 	}
 	//keep running
 	while (true)
 	{
-		for (int i = 0; i < GetRegisteredGameVector().size(); i++)
+		for (int i = 0; i < GetRegisteredGameVector()->size(); i++)
 		{
-			GetRegisteredGameVector()[i]->Update(); //Player's life goes from 100 to zero, see Player::Update
+			(*GetRegisteredGameVector())[i]->Update(); //Player's life goes from 100 to zero, see Player::Update
 
 		}
 		if (EndGame() == true)
 			break;
 	}
 	return;
+	// Level destructor is called and destroys player for some reason, even though it's still being referenced by the GameEventManager's vector.
 }
 
-GameEventManager::GameEventManager() : mvecRegisteredGameVector(NULL) {}
+GameEventManager::GameEventManager() : mvecRegisteredGameVector(new vector<shared_ptr<GameObject>>) {}
 
-const shared_ptr<GameEventManager> 
+const shared_ptr<GameEventManager>& 
 GameEventManager::GetGameEventManager()
 {
 	if (!msptrGameEventManager)
@@ -48,5 +49,5 @@ GameEventManager::RegisterGameObject(shared_ptr<GameObject> sptrGameObject)
 void
 GameEventManager::AddGameObject(shared_ptr<GameObject> sptrGameObject)
 {
-	GetRegisteredGameVector().push_back(sptrGameObject);
+	GetRegisteredGameVector()->push_back(sptrGameObject);
 }

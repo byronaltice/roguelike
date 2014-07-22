@@ -5,7 +5,7 @@
 
 // Game Object Classes inherit this so they are registered with GameEventManager.
 using namespace std;
-class GameObject: enable_shared_from_this<GameObject>{
+class GameObject{
 public:
 
 	GameObject();
