@@ -1,7 +1,6 @@
 #ifndef _game_object
 #define _game_object
 #include <memory>
-#include "GameState.h"
 
 // Game Object Classes inherit this so they are registered with GameEventManager.
 using namespace std;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "GameState.h"
 
 Player::Player() : miMaxHealth(100) {};
 void
@@ -11,9 +12,9 @@ Player::Start()
 void
 Player::Update() // reimplement GameObject::Update(), which is called by the GameEventManager
 {
-	miMaxHealth--;
+	--miMaxHealth;
 	if (miMaxHealth <= 0)
 	{
-		EndGame(true);
+		GameState::EndGame(true);
 	}
 }

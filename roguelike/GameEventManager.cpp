@@ -1,32 +1,31 @@
 #include "stdafx.h"
 #include "GameEventManager.h"
-#include "Level.h"
+#include "GameState.h"
 
 shared_ptr<GameEventManager> GameEventManager::msptrGameEventManager(NULL);
 
 void
 GameEventManager::StartGameEvents()
 {
-	Level level; // Will make a player which is registered with the GameVector automatically
+	GameState level; // Will make a player which is registered with the GameVector automatically
 	//run once
-	for (int i = 0; i < GetRegisteredGameVector()->size(); i++)
+	int size = GetRegisteredGameVector()->size();
+	vector<shared_ptr<GameObject>> & vecsptrRegisteredGameVector = (*GetRegisteredGameVector());
+	for (int i = 0; i < GetRegisteredGameVector()->size(); ++i)
 	{
-		(*GetRegisteredGameVector())[i]->Start(); //nothing for now
-
+		vecsptrRegisteredGameVector[i]->Start(); //nothing for now
 	}
 	//keep running
-	while (true)
+	while (level.EndGame() != true)
 	{
 		for (int i = 0; i < GetRegisteredGameVector()->size(); i++)
 		{
 			(*GetRegisteredGameVector())[i]->Update(); //Player's life goes from 100 to zero, see Player::Update
 
 		}
-		if (EndGame() == true)
-			break;
 	}
 	return;
-	// Level destructor is called and destroys player for some reason, even though it's still being referenced by the GameEventManager's vector.
+	// GameState destructor is called and destroys player for some reason, even though it's still being referenced by the GameEventManager's vector.
 }
 
 GameEventManager::GameEventManager() : mvecRegisteredGameVector(new vector<shared_ptr<GameObject>>) {}
@@ -36,8 +35,7 @@ GameEventManager::GetGameEventManager()
 {
 	if (!msptrGameEventManager)
 	{
-		shared_ptr<GameEventManager> sptrGameEventManager(new GameEventManager);
-		msptrGameEventManager = sptrGameEventManager;
+		msptrGameEventManager.reset(new GameEventManager);
 	}
 	return msptrGameEventManager;
 }

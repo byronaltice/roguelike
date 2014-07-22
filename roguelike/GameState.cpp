@@ -1,19 +1,10 @@
 #include "stdafx.h"
-
 #include "GameState.h"
 
-//Keep track of the game's state
+bool GameState::mbEndGame(false);
 
-//Maybe get rid of the Level class, and make this a class, and move the Level functionality here?
-
-void
-EndGame(bool b)
+GameState::GameState() : msptrPlayer(NULL)
 {
-	bEndGame = b;
-}
-
-bool
-EndGame()
-{
-	return bEndGame;
+	shared_ptr<Player> sptrPlayer(new Player);
+	SetPlayer(sptrPlayer);
 }
