@@ -2,21 +2,20 @@
 #include "GameEventManager.h"
 #include "GameState.h"
 
-shared_ptr<GameEventManager> GameEventManager::msptrGameEventManager(NULL);
+shared_ptr<GameEventManager> GameEventManager::msptrGameEventManager(new GameEventManager);
 
 void
 GameEventManager::StartGameEvents()
 {
-	GameState level; // Will make a player which is registered with the GameVector automatically
 	//run once
 	int size = GetRegisteredGameVector()->size();
 	vector<shared_ptr<GameObject>> & vecsptrRegisteredGameVector = (*GetRegisteredGameVector());
 	for (int i = 0; i < GetRegisteredGameVector()->size(); ++i)
 	{
-		vecsptrRegisteredGameVector[i]->Start(); //nothing for now
+		vecsptrRegisteredGameVector[i]->Start(); //nothing for now 
 	}
 	//keep running
-	while (level.EndGame() != true)
+	while (GetLevel()->EndGame() != true)
 	{
 		for (int i = 0; i < GetRegisteredGameVector()->size(); i++)
 		{
@@ -24,11 +23,14 @@ GameEventManager::StartGameEvents()
 
 		}
 	}
-	return;
+	return; 
 	// GameState destructor is called and destroys player for some reason, even though it's still being referenced by the GameEventManager's vector.
 }
 
-GameEventManager::GameEventManager() : mvecRegisteredGameVector(new vector<shared_ptr<GameObject>>) {}
+GameEventManager::GameEventManager() : mvecRegisteredGameVector(new vector<shared_ptr<GameObject>>) , mLevel(NULL) //Instantiating the level before the GameEventManager is fully instantiated causes an infinite recursion.
+{
+	return;
+}
 
 const shared_ptr<GameEventManager>& 
 GameEventManager::GetGameEventManager()
@@ -38,6 +40,16 @@ GameEventManager::GetGameEventManager()
 		msptrGameEventManager.reset(new GameEventManager);
 	}
 	return msptrGameEventManager;
+}
+
+const shared_ptr<GameState>&
+GameEventManager::GetLevel()
+{
+	if (!mLevel)
+	{
+		mLevel.reset(new GameState);
+	}
+	return mLevel;
 }
 void 
 GameEventManager::RegisterGameObject(shared_ptr<GameObject> sptrGameObject)
