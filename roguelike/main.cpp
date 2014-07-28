@@ -3,8 +3,6 @@
 using namespace std;
 
 
-
-	
 template <class listtype> class LinkedList
 {
 public:
@@ -70,5 +68,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	a.addNode();
 	a.setValue(11);
 	a.firstNode();
-return 0;
+	return 0;
+
 }
