@@ -1,5 +1,6 @@
 #include "stdafx.h"
-
+#include <map>
+#include <iostream>
 using namespace std;
 
 
@@ -11,6 +12,7 @@ public:
 	bool nextNode();
 	void firstNode();
 	void addNode();
+	void removeNode();
 	void setValue(const listtype & i);
 	const listtype & getValue() const;
 	LinkedList* first;
@@ -23,9 +25,9 @@ template <class listtype>
 bool
 LinkedList<listtype>::nextNode()
 {
-	if (next != NULL)
+	if (me->next != NULL)
 	{
-		me = next;
+		me = me->next;
 		return true;
 	}
 	return false;
@@ -41,9 +43,8 @@ void
 LinkedList<listtype>::addNode()
 {
 	LinkedList<listtype>* temp = NULL;
-	if (next != NULL)
-		temp = next;
-	next = new LinkedList<listtype>;
+	temp = next;
+	next = new LinkedList<listtype>();
 	if (temp)
 		next->next = temp;
 	next->first = first;
@@ -59,7 +60,7 @@ template <class listtype>
 const listtype &
 LinkedList<listtype>::getValue() const
 {
-	return iValue;
+	return me->iValue;
 }
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -67,7 +68,37 @@ int _tmain(int argc, _TCHAR* argv[])
 	a.setValue(5);
 	a.addNode();
 	a.setValue(11);
+	a.addNode();
+	a.setValue(15);
+
+	a.addNode();
+	a.setValue(1);
+
+	a.addNode();
+	a.setValue(10);
+
+	a.addNode();
+	a.setValue(10);
+
+	a.addNode();
+	a.setValue(115);
+
+	a.addNode();
+	a.setValue(15);
+
 	a.firstNode();
+
+	map<int, bool> checker;
+	do
+	{
+		if (checker[a.getValue()])
+			cout << "Duplicate found [" << a.getValue() << "] " << endl;
+		else
+			cout << "Not a duplicate [" << a.getValue() << "]" << endl;
+		checker[a.getValue()] = true;
+	} while (a.nextNode());
+
+
 	return 0;
 
 }
