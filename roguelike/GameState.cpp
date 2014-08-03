@@ -5,6 +5,6 @@ bool GameState::mbEndGame(false);
 
 GameState::GameState() : msptrPlayer(NULL)
 {
-	shared_ptr<Player> sptrPlayer(new Player);
+	shared_ptr<Player> sptrPlayer(Player::GetInstance());
 	SetPlayer(sptrPlayer);
 }

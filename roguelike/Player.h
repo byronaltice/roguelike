@@ -6,9 +6,10 @@
 class Player : public GameObject
 {
 public:
-	Player();
 	virtual ~Player() {}
+	static shared_ptr<Player> GetInstance() { return dynamic_pointer_cast<Player>((new Player)->shared_from_this());  }
 private:
+	Player();
 	virtual void Update();
 	virtual void Start();
 	int miMaxHealth;
