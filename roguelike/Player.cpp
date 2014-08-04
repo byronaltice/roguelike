@@ -17,4 +17,8 @@ Player::Update() // reimplement GameObject::Update(), which is called by the Gam
 	{
 		GameState::EndGame(true);
 	}
+	if (miMaxHealth == 50)
+	{
+
+	}
 }

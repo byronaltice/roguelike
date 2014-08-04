@@ -1,12 +1,19 @@
 #include "stdafx.h"
 #include "GameEventManager.h"
 #include "GameState.h"
+#include "PlayerDungeonViewObserver.h"
+#include "DungeonSubject.h"
+#include "Dungeon.h"
 
 shared_ptr<GameEventManager> GameEventManager::msptrGameEventManager(new GameEventManager);
 
 void
 GameEventManager::StartGameEvents()
 {
+	PlayerDungeonViewObserver adtPlayerDungeonView;
+	DungeonSubject adtDungeon;
+	Dungeon dungeon;
+	adtDungeon.AddDungeonObserver(&adtPlayerDungeonView);
 	//run once
 	int size = GetRegisteredGameVector()->size();
 	vector<shared_ptr<GameObject>> & vecsptrRegisteredGameVector = (*GetRegisteredGameVector());
@@ -22,6 +29,7 @@ GameEventManager::StartGameEvents()
 			(*GetRegisteredGameVector())[i]->Update(); //Player's life goes from 100 to zero, see Player::Update
 
 		}
+		adtDungeon.UpdateDungeon(dungeon);
 	}
 	return; 
 	// GameState destructor is called and destroys player for some reason, even though it's still being referenced by the GameEventManager's vector.
